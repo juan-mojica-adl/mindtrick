@@ -1,22 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DateComponentComponent } from './date-component/date-component.component';
-import { MonthComboboxComponent } from './month-combobox/month-combobox.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DateComponentComponent,
-    MonthComboboxComponent
+    
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA // Tells Angular we  have custom tags in our template
+  ]
 })
 export class AppModule { }

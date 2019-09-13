@@ -58,6 +58,7 @@ export class MyComponent {
   }
 
   toggleEnabledInitialMonth(e){
+    console.log(e)
     if (this.textInitYear.value != ""){
       this.textInitMonth.disabled = false;
     } else {
@@ -66,6 +67,7 @@ export class MyComponent {
   }
 
   deleteInitialDay(e){
+    console.log(e)
     this.textInitDay.value = "";
     this.textInitDay.disabled = true;
     this.toggleEnabledInitialDay(e);
@@ -75,6 +77,7 @@ export class MyComponent {
   }
 
   toggleEnabledInitialDay(e){
+    console.log(e)
     if (this.textInitMonth.value != ""){
       this.textInitDay.disabled = false;
     } else {
@@ -83,6 +86,7 @@ export class MyComponent {
   }
 
   deleteEndYear(e){
+    console.log(e)
     this.textEndYear.value = "";
     this.textEndYear.disabled = true;
     this.deleteEndMonth(e);
@@ -92,6 +96,7 @@ export class MyComponent {
   }
 
   toggleEnabledEndYear(e){
+    console.log(e)
     if (this.textInitDay.value != ""){
       this.textEndYear.disabled = false;
     } else {
@@ -100,6 +105,7 @@ export class MyComponent {
   }
 
   deleteEndMonth(e){
+    console.log(e)
     this.textEndMonth.value = "";
     this.textEndMonth.disabled = true;
     this.deleteEndDay(e);
@@ -107,6 +113,7 @@ export class MyComponent {
   }
 
   toggleEnabledEndMonth(e){
+    console.log(e)
     if (this.textEndYear.value != ""){
       this.textEndMonth.disabled = false;
     } else {
@@ -121,6 +128,7 @@ export class MyComponent {
   }
 
   toggleEnabledEndDay(e){
+    console.log(e)
     if (this.textEndMonth.value != ""){
       this.textEndDay.disabled = false;
     } else {

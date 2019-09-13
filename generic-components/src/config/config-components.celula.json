@@ -1,0 +1,14 @@
+{
+    "accesibility":{
+        "text":{
+            "max": 40,
+            "min": 100,
+            "normal": 30
+        }
+
+    },
+    "dates":{
+        "initialYear": 1900,
+        "maxYear": 2000
+    }
+}
