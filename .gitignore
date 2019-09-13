@@ -1,41 +1,46 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
-*.swp
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-pids
-logs
-results
-tmp
+# compiled output
+/dist
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
 
-# Build
-public/css/main.css
+# dependencies
+/node_modules
 
-# Coverage reports
-coverage
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
 
-# API keys and secrets
-.env
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-# Dependency directory
-node_modules
-bower_components
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 
-# Editors
-.idea
-*.iml
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
 
-# OS metadata
+# System Files
 .DS_Store
 Thumbs.db
-
-# Ignore built ts files
-dist/**/*
-
-# ignore yarn.lock
-yarn.lock
