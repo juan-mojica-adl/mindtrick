@@ -23,6 +23,7 @@ export class MyComponent {
    */
   @Prop() last: string;
 
+  private textFormato?: HTMLInputElement
   private textInitYear?: HTMLInputElement
   private textInitMonth?: HTMLInputElement
   private textInitDay?: HTMLInputElement
@@ -30,6 +31,8 @@ export class MyComponent {
   private textEndYear?: HTMLInputElement
   private textEndMonth?: HTMLInputElement
   private textEndDay?: HTMLInputElement
+
+  private initialDateLabel;
 
   private getText(): string {
     return format(this.first, this.middle, this.last);
@@ -75,6 +78,7 @@ export class MyComponent {
     this.deleteEndMonth(e);
     this.deleteEndDay(e);
     this.toggleEnabledEndYear(e);
+    this.formatInitialDate()
   }
 
   toggleEnabledEndYear(e){
@@ -114,25 +118,40 @@ export class MyComponent {
     }
   }
 
-  format(){
-    return moment("1995-12-25").format('LLL');
+  formatInitialDate(){
+    let initialDate = this.textInitYear.value + "-" + this.textInitMonth.value + "-" + this.textInitDay.value;
+    console.log("fec", initialDate)
+    if(this.textInitDay){
+      this.initialDateLabel = moment(initialDate).zone(-5).format(this.textFormato.value != "" ? this.textFormato.value : "YYYY-MM-DD");
+      if (!moment(this.initialDateLabel, this.textFormato.value).isValid()){
+        this.initialDateLabel = "Fecha o formato no válidos";
+      }
+    }else{
+      this.initialDateLabel =  "";
+    }
+
+    console.log("fec2", this.initialDateLabel)
   }
 
   render() {
-    return (<div>
+    return (
+    <div>
       <p>
-      <input ref={el => this.textInitYear = el as HTMLInputElement } id="initYear" type="text" placeholder="yyyy" onKeyPress={(e)=>this.deleteInitialMonth(e)}></input>
-      <input ref={el => this.textInitMonth = el as HTMLInputElement } disabled={true} onKeyPress={(e)=>this.deleteInitialDay(e)} id="initMonth" name= "mon" type="text" placeholder="MM"></input>
-      <input ref={el => this.textInitDay = el as HTMLInputElement } disabled={true} onKeyPress={(e)=>this.deleteEndYear(e)} id="initDay" type="text" placeholder="DD"></input>
-      <div>{this.format()}</div>
+        Digite el formato de las fechas:  &nbsp;
+        <input ref={el => this.textFormato = el as HTMLInputElement } onKeyPress={(e)=>this.deleteEndYear(e)} id="formato" type="text" placeholder="Formato fecha"></input>
       </p>
       <p>
-      <input ref={el => this.textEndYear = el as HTMLInputElement } disabled={true} onKeyPress={(e)=>this.deleteEndMonth(e)} id="endYear" type="text" placeholder="yyyy"></input>
-      <input ref={el => this.textEndMonth = el as HTMLInputElement } disabled={true} onKeyPress={(e)=>this.deleteEndDay(e)} id="endMonth" type="text" placeholder="MM"></input>
-      <input ref={el => this.textEndDay = el as HTMLInputElement } disabled={true} id="endDay" type="text" placeholder="DD"></input>
+        <input ref={el => this.textInitYear = el as HTMLInputElement } id="initYear" type="text" placeholder="yyyy" onKeyPress={(e)=>this.deleteInitialMonth(e)}></input>
+        <input ref={el => this.textInitMonth = el as HTMLInputElement } disabled={true} onKeyPress={(e)=>this.deleteInitialDay(e)} id="initMonth" name= "mon" type="text" placeholder="MM"></input>
+        <input ref={el => this.textInitDay = el as HTMLInputElement } disabled={true} onKeyPress={(e)=>this.deleteEndYear(e)} id="initDay" type="text" placeholder="DD"></input>
+        <div>{this.initialDateLabel}</div>
+      </p>
+      <p>
+        <input ref={el => this.textEndYear = el as HTMLInputElement } disabled={true} onKeyPress={(e)=>this.deleteEndMonth(e)} id="endYear" type="text" placeholder="yyyy"></input>
+        <input ref={el => this.textEndMonth = el as HTMLInputElement } disabled={true} onKeyPress={(e)=>this.deleteEndDay(e)} id="endMonth" type="text" placeholder="MM"></input>
+        <input ref={el => this.textEndDay = el as HTMLInputElement } disabled={true} id="endDay" type="text" placeholder="DD"></input>
       </p>
     </div>)
-    //return <div>Hello, World! I'm {this.getText()}</div>; 
   }
 
 }
