@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Template Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+        .container {
+            max-width: 500px;
+            padding-top: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <p>{{ message }}</p>
+    <form method="post">
+
+        <label for="formatDate">Formato de la fecha:</label><br/>
+        <input name="formatDate" type="text" value=""/><br/>
+
+
+        <label for="range">Rango de fechas:</label><br/>
+        <input type="checkbox" name="range" /><br/>
+
+        <label for="initialYear">año minimo:</label><br/>
+        <input name="initialYear" type="text" value=""/><br/>
+
+        <label for="lastYear">año maximo:</label><br/>
+        <input name="lastYear" type="text" value=""/><br/>
+
+        <label >Accesibilidad:</label><br/>
+
+        <label >Tamaños de letra:</label><br/>
+
+        <label for="normSize">Letra Normal:</label><br/>
+        <input name="normSize" type="text" value=""/><br/>
+
+        <label for="minSize">Letra pequeña:</label><br/>
+        <input name="minSize" type="text" value=""/><br/>
+
+        <label for="maxSize">Letra Grande:</label><br/>
+        <input name="maxSize" type="text" value=""/><br/>
+
+
+        <label for="repository">Repositorio front:</label><br/>
+        <input name="repository" type="text" value=""/><br/>
+
+        <input name="" type="submit" value="Generar"/>
+    </form>
+
+</div>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
