@@ -1,5 +1,6 @@
 import { Component, Prop, h } from '@stencil/core';
 import { format } from '../../utils/utils';
+import {getLocaleComponentStrings} from '../../utils/locate'
 import moment from 'moment';
 
 @Component({
@@ -23,6 +24,25 @@ export class MyComponent {
    */
   @Prop() last: string;
 
+  @Prop() lang: string;
+
+  async loadParameters(): Promise<any> {
+    let options = await new Promise((resolve, reject): void => {
+      fetch(`/config/config-components.celula.json`)
+          .then((result) => {
+              if (result.ok) resolve(result.json());
+              else reject();
+          }, () => reject()); 
+  });
+  console.log("options:", options)
+
+  this.minYear = options.dates.initialYear;
+  this.maxYear = options.dates.maxYear;
+  
+
+
+
+}
 
   private textFormato?: HTMLInputElement
   private textInitYear?: HTMLSelectElement
@@ -35,17 +55,20 @@ export class MyComponent {
 
   private initialDateLabel?: HTMLInputElement
   private finalDateLabel?: HTMLInputElement
-  private years;
+  private years = new Array();
   private months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
   private days;
+  private minYear;
+  private maxYear;
 
-  constructor(){
-    this.getYears(1990, 2020)
+  componentWillRender(){
     this.getDays();
+    this.getYears(1990, 2000);
   }
 
   private getText(): string {
     return format(this.first, this.middle, this.last);
+
   }
 
   deleteInitialMonth(e){
@@ -172,7 +195,7 @@ export class MyComponent {
   }
 
   getYears(minYear, maxYear){
-    this.years = new Array();
+    
     for (var i = minYear; i<=maxYear; i++){
       this.years.push(i);
     }
